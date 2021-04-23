@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Aplicación Restaurante</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="sobrenosotros">Sobre Nosotros</string>
+    <string name="menuDia">El Menú</string>
+    <string name="carta">La Carta</string>
+    <string name="entrantes">Entrantes</string>
+    <string name="añadirMenu">Añadir menú 12€</string>
+    <string name="contacto">Contacto</string>
+    <string name="titolCarta">NUESTRA CARTA</string>
+    <string name="entranteUno">Mejillones</string>
+    <string name="entranteDos">Ensalada de cabra</string>
+    <string name="entranteTres">Chopitos</string>
+    <string name="entranteCuatro">Calamares a la plancha</string>
+    <string name="principalUno">Entrecotte de ternera con patatas</string>
+    <string name="principalDos">Lubina a la espalda</string>
+    <string name="principalTres">Paella Valenciana</string>
+    <string name="principalCuatro">Fideua de Gandia</string>
+    <string name="postreUno">Tiramisu</string>
+    <string name="postreDos">Flan de la casa</string>
+    <string name="postreTres">Brownie con helado</string>
+    <string name="postreCuatro">Fruta de temporada</string>
+    <string name="inicio">Inicio</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps_activityssss">Map</string>
+    <string name="titolCarrito">Tu Pedido</string>
+    <string name="titolConfirmar">Confirmar dirección</string>
+</resources>

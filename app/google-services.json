@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "659432492626",
+    "firebase_url": "https://aplicrestaurante-default-rtdb.firebaseio.com",
+    "project_id": "aplicrestaurante",
+    "storage_bucket": "aplicrestaurante.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659432492626:android:ebb06b7fe8101069aa198b",
+        "android_client_info": {
+          "package_name": "com.example.aplicrestaurante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659432492626-qvm7skld7tp217vub2busvp3vaniogtb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0M_cLMcA8xrg46-0id4t1PiI4AMV0n-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659432492626-qvm7skld7tp217vub2busvp3vaniogtb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
