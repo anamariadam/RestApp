@@ -27,4 +27,6 @@
     <string name="title_activity_maps_activityssss">Map</string>
     <string name="titolCarrito">Tu Pedido</string>
     <string name="titolConfirmar">Confirmar dirección</string>
+    <string name="finalizar">Finalizar Pedido</string>
+    <string name="totalComanda">Total del pedido:</string>
 </resources>

@@ -31,7 +31,7 @@
         <ExpandableListView
             android:id="@+id/carta"
             android:layout_width="match_parent"
-            android:layout_height="543dp" />
+            android:layout_height="478dp" />
 
         <Button
             android:id="@+id/button3"
@@ -39,5 +39,12 @@
             android:layout_height="wrap_content"
             android:onClick="onClickMenu"
             android:text="Ir al menu diario" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ir al pedido"
+            android:onClick="onClickCarrito"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

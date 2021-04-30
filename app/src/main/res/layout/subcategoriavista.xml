@@ -14,21 +14,42 @@
 
         <ImageView
             android:id="@+id/imagenes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="149dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
             android:onClick="onClick"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/subcategoria"
-            android:layout_width="240dp"
-            android:layout_height="120sp"
-            android:layout_marginRight="10sp"
+            android:id="@+id/nombres"
+            android:layout_width="135dp"
+            android:layout_height="120dp"
             android:background="@color/purple_200"
-            android:padding="15dp"
             android:onClick="onClick"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/precios"
+            android:layout_width="87dp"
+            android:layout_height="120dp"
+            android:textAlignment="textEnd"
+            android:background="@color/purple_200"
+            android:onClick="onClick"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/euro"
+            android:layout_width="103dp"
+            android:layout_height="120dp"
+            android:layout_marginRight="10sp"
+            android:layout_weight="1"
+            android:background="@color/purple_200"
+            android:onClick="onClick"
+            android:text="€"
             android:textColor="@color/black"
             android:textSize="25sp" />
 

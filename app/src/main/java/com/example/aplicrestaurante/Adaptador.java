@@ -14,14 +14,15 @@ import java.util.Map;
 public class Adaptador extends BaseExpandableListAdapter {
 
     private ArrayList<String> categorias;
-    private Map<String, ArrayList<NuestraCarta.Producto>> subcategoria;
+    private Map<String, ArrayList<Producto>> subcategoria;
     private Context context;
 
-    public Adaptador(ArrayList<String> categorias, Map<String, ArrayList<NuestraCarta.Producto>> subcategoria, Context context) {
+    public Adaptador(ArrayList<String> categorias, Map<String, ArrayList<Producto>> subcategoria, Context context) {
         this.categorias = categorias;
         this.subcategoria = subcategoria;
         this.context = context;
     }
+
 
     @Override
     public int getGroupCount() {
@@ -70,11 +71,14 @@ public class Adaptador extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        NuestraCarta.Producto item = (NuestraCarta.Producto) getChild(groupPosition,childPosition);
+        Producto item = (Producto) getChild(groupPosition,childPosition);
 
         convertView = LayoutInflater.from(context).inflate(R.layout.subcategoriavista, null);
-        TextView subcategoria = (TextView) convertView.findViewById(R.id.subcategoria);
+        TextView subcategoria = (TextView) convertView.findViewById(R.id.nombres);
         subcategoria.setText(item.nombre);
+
+        TextView preciio = (TextView) convertView.findViewById(R.id.precios);
+        preciio.setText(String.valueOf(item.precio));
 
         ImageView img =(ImageView) convertView.findViewById(R.id.imagenes);
         img.setImageResource(item.imagen);
