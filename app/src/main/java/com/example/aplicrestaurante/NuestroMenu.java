@@ -24,38 +24,35 @@ import java.util.ArrayList;
 public class NuestroMenu extends MainMenu {
     FirebaseDatabase database;
     DatabaseReference myRef ;
-
+    RadioButton entrante1, entrante2, entrante3,entrante4, principal1,principal2,principal3,principal4, postre1, postre2, postre3, postre4;
     private ArrayList<String> llistaProductes;
     private  String  producte ;
-
+    public ArrayList<Producto> llistaMenus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuestro_menu);
-        RadioButton entrante1 = findViewById(R.id.entrante1);
-        RadioButton entrante2 = findViewById(R.id.entrante2);
-        RadioButton entrante3 = findViewById(R.id.entrante3);
-        RadioButton entrante4 = findViewById(R.id.entrante4);
 
+        entrante1 = findViewById(R.id.entrante1);
+        entrante2 = findViewById(R.id.entrante2);
+        entrante3 = findViewById(R.id.entrante3);
+        entrante4 = findViewById(R.id.entrante4);
 
-        RadioButton principal1 = findViewById(R.id.principal1);
-        RadioButton principal2 = findViewById(R.id.principal2);
-        RadioButton principal3 = findViewById(R.id.principal3);
-        RadioButton principal4 = findViewById(R.id.principal4);
+        principal1 = findViewById(R.id.principal1);
+        principal2 = findViewById(R.id.principal2);
+        principal3 = findViewById(R.id.principal3);
+        principal4 = findViewById(R.id.principal4);
 
-        RadioButton postre1 = findViewById(R.id.postre1);
-        RadioButton postre2 = findViewById(R.id.postre2);
-        RadioButton postre3 = findViewById(R.id.postre3);
-        RadioButton postre4 = findViewById(R.id.postre4);
-
+        postre1 = findViewById(R.id.postre1);
+        postre2 = findViewById(R.id.postre2);
+        postre3 = findViewById(R.id.postre3);
+        postre4 = findViewById(R.id.postre4);
 
         database =  FirebaseDatabase.getInstance();
         myRef = database.getReference("menu");
         llistaProductes=new ArrayList<>();
-
-
-
+        llistaMenus=new ArrayList<>();
 
 
         getLlistaProductes(new MyCallback() {
@@ -113,17 +110,31 @@ public class NuestroMenu extends MainMenu {
         });
     }
 
-    public void onClick(View view) {
-        Intent intent = new Intent(this, Carrito.class);
-        startActivity(intent);
+    public void OnClickAnadir(View view){
+        if (entrante1.isChecked() || entrante2.isChecked() || entrante3.isChecked() || entrante4.isChecked()){
+            if(principal1.isChecked() || principal2.isChecked() || principal3.isChecked() || principal4.isChecked()){
+                if(postre1.isChecked() || postre2.isChecked() || postre3.isChecked() || postre4.isChecked()){
+                    Producto p = new Producto("Menu Diario", 12);
+                    llistaMenus.add(p);
+                    Intent intent = new Intent(this, Carrito.class);
+                    int q = llistaMenus.size();
+
+                    intent.putExtra("quant", q);
+                    for (int i = 0; i < llistaMenus.size();i++) {
+                        intent.putExtra("prod", llistaMenus.get(i).getNombre());
+                    }
+                    for (int i = 0; i < llistaMenus.size();i++) {
+                        intent.putExtra("preu", llistaMenus.get(i).getPrecio());
+                    }
+
+                    startActivity(intent);
+                }
+            }
+        }
+
     }
     public void onClickCarta(View view) {
         Intent intent = new Intent(this, NuestraCarta.class);
         startActivity(intent);
     }
-
-
-
-
-
 }

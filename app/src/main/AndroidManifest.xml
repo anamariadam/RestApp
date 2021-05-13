@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AplicRestaurante">
-        <activity android:name=".Finalizado"></activity>
+        <activity android:name=".CartaFirebase"></activity>
+        <activity android:name=".Finalizado" />
         <activity android:name=".ConfirmarDireccion" />
         <activity android:name=".Carrito" />
         <!--

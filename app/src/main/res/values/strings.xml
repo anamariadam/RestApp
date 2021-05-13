@@ -29,4 +29,5 @@
     <string name="titolConfirmar">Confirmar dirección</string>
     <string name="finalizar">Finalizar Pedido</string>
     <string name="totalComanda">Total del pedido:</string>
+    <string name="cartafirebase">Carta en firebase</string>
 </resources>

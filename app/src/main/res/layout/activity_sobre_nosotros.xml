@@ -9,24 +9,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="80dp"
-        android:background="@drawable/mesa">
+        android:background="@drawable/mesa"
+        android:orientation="horizontal">
+
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="366dp"
-            android:layout_height="302dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginEnd="60dp"
+            android:layout_width="326dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
             android:layout_marginRight="60dp"
             android:fontFamily="serif"
-            android:gravity="center"
-            android:text="Empresa dedicada al servicio familiar, nuestro objetivo es hacer que te sientas como en casa"
+            android:gravity="top"
+            android:text=" Empresa dedicada al servicio familiar, nuestro objetivo es hacer que te sientas como en casa "
             android:textAlignment="center"
-            android:textColor="@color/blueBBchill"
-            android:textSize="30dp" />
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            tools:ignore="RtlCompat" />
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

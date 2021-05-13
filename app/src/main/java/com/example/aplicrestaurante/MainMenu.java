@@ -36,6 +36,10 @@ public class MainMenu extends AppCompatActivity {
             Intent intent = new Intent(this, Contacto.class);
             startActivity(intent);
         }
+        if (id == R.id.action_firebase) {
+            Intent intent = new Intent(this, CartaFirebase.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

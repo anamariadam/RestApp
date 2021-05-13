@@ -1,5 +1,6 @@
 package com.example.aplicrestaurante;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.ref.PhantomReference;
 import java.util.ArrayList;
@@ -19,13 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NuestraCarta extends MainMenu {
-    private ExpandableListView myListView;
+    public ExpandableListView myListView;
     private Adaptador adapta;
-    private ArrayList<String> categor;
-    private Map<String, ArrayList<Producto>> subcategor;
-    ArrayList<Producto>comanda = new ArrayList<>();
-    ArrayList<Producto> listaEntrantes, listaPaellas, listaFideuas, listaPostres, listaVinos;
-
+    public ArrayList<String> categor;
+    public Map<String, ArrayList<Producto>> subcategor;
+    public ArrayList<Producto>comanda = new ArrayList<>();
+    public ArrayList<Producto> listaEntrantes, listaPaellas, listaFideuas, listaPostres, listaVinos;
     Producto p;
     private int gp, cp;
 
@@ -43,52 +50,43 @@ public class NuestraCarta extends MainMenu {
         categor = new ArrayList<>();
         subcategor = new HashMap<>();
 
-
         cargarCarta();
 
 
         myListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                gp = groupPosition;
-                cp = childPosition;
-                return true;
-            }
-            public void onClick (ExpandableListView parent, View v, int groupPosition, int childPosition, long id){
+                Producto p;
+                if (groupPosition == 0) {
+                    p = new Producto(listaEntrantes.get(childPosition).nombre, listaEntrantes.get(childPosition).precio);
+                    comanda.add(p);
+                } else if (groupPosition == 1) {
+                    p = new Producto(listaPaellas.get(childPosition).nombre, listaPaellas.get(childPosition).precio);
+                    comanda.add(p);
+                } else if (groupPosition == 2) {
+                    p = new Producto(listaFideuas.get(childPosition).nombre, listaFideuas.get(childPosition).precio);
+                    comanda.add(p);
+                } else if (groupPosition == 3) {
+                    p = new Producto(listaPostres.get(childPosition).nombre, listaPostres.get(childPosition).precio);
+                    comanda.add(p);
+                } else if (groupPosition == 4) {
+                    p = new Producto(listaVinos.get(childPosition).nombre, listaVinos.get(childPosition).precio);
+                    comanda.add(p);
+                }
+                Context context = getApplicationContext();
+                CharSequence text = "Producto añadido";
+                int duration = Toast.LENGTH_SHORT;
 
-            }
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 
+                return false;
+            }
         });
 
-    }
-
-    public void onClick(View view) {
-        String cat = categor.get(gp);
-        if(cat == "ENTRANTES"){
-            p = new Producto(listaEntrantes.get(cp).nombre,listaEntrantes.get(cp).precio);
-            Log.e("caaat dinsss ", ""+cp );
-            comanda.add(p);
-        }else if (cat == "PAELLAS"){
-            p = new Producto(listaPaellas.get(cp).nombre,listaPaellas.get(cp).precio);
-            comanda.add(p);
-        }else if (cat == "FIDEUAS"){
-            p = new Producto(listaFideuas.get(cp).nombre,listaFideuas.get(cp).precio);
-            comanda.add(p);
-        }else if (cat == "POSTRES"){
-            p = new Producto(listaPostres.get(cp).nombre,listaPostres.get(cp).precio);
-            comanda.add(p);
-        }else{
-            p = new Producto(listaVinos.get(cp).nombre,listaVinos.get(cp).precio);
-            comanda.add(p);
-        }
-        Context context = getApplicationContext();
-        CharSequence text = "Producto añadido";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
 
     }
+
 
     public void onClickCarrito(View view) {
         Intent intent = new Intent(this, Carrito.class);

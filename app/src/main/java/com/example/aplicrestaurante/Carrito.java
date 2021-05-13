@@ -17,13 +17,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Carrito extends MainMenu {
-    ArrayList<Producto> prodComanda = new ArrayList<>();
+    static ArrayList<Producto> prodComanda = new ArrayList<>();
     private ListView myListView;
     AdaptadorCarrito adaptan;
     EditText conta;
-    TextView total;
+    public TextView total;
     DatabaseReference db;
-    Button sum, res, botonSubirDatos;
+    Button botonSubirDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,34 +32,12 @@ public class Carrito extends MainMenu {
 
         myListView = findViewById(R.id.comanda);
         conta = findViewById(R.id.contador);
-        sum = (Button)findViewById(R.id.sumar);
-        res = (Button)findViewById(R.id.restar);
+
         total = findViewById(R.id.total);
         botonSubirDatos = findViewById(R.id.comandaUpdate);
         db = FirebaseDatabase.getInstance().getReference();
 
         cargarCarrito();
-
-        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (sum.isPressed()){
-                    int unit = prodComanda.get(position).getUnidades();
-                    int tot = unit+1;
-                    conta.setText(tot);
-                    prodComanda.get(position).setUnidades(unit+1);
-                }
-                if (res.isActivated()){
-                    int unit = prodComanda.get(position).getUnidades();
-                    int tot = unit+1;
-                    conta.setText(tot);
-                    prodComanda.get(position).setUnidades(unit-1);
-                }
-
-            }
-
-        });
-
 
         botonSubirDatos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,16 +62,18 @@ public class Carrito extends MainMenu {
             }
         });
 
-    }
-
-    public void onClickSumar(View v){
+        totalDinero();
 
     }
 
-    public void onClickRestar(View v){
-
+    public void totalDinero(){
+        int tt = 0;
+        for (int i = 0;i < prodComanda.size();i++){
+        tt += prodComanda.get(i).getPrecio();
+        }
+        String t =String.valueOf(tt);
+        total.setText(t);
     }
-
 
     public void cargarCarrito(){
         Bundle extras = getIntent().getExtras();
@@ -115,6 +95,7 @@ public class Carrito extends MainMenu {
         adaptan = new AdaptadorCarrito(this, prodComanda);
         myListView.setAdapter(adaptan);
     }
+
 
 
 
