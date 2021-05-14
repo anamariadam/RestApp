@@ -102,23 +102,22 @@ public class CartaFirebase extends MainMenu {
 
     public void cargar(){
 
-        myRef.child("entrantes").addValueEventListener(new ValueEventListener() {
+        myRef.child("carta/entrantes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
+                    Log.e("firebase", "dins del if ");
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
-                        Producto pp = producteSnapshot.getValue(Producto.class);
-                        String n = pp.getNombre();
-                        double prreu = pp.getPrecio();
 
-                        //String n = producteSnapshot.child("nombre").getValue().toString();
-                        //String preu = producteSnapshot.child("precio").getValue().toString();
-                        //int prreu = Integer.getInteger(preu);
-                        p = new Producto(n, prreu, R.drawable.calamares);
-                        Log.e("nommmmmmmmmm", n);
-                        Log.e("proooddd", p.nombre +"tgtttttt"+ p.precio);
+                        String n = producteSnapshot.child("nombre").getValue().toString();
+                        String pr = producteSnapshot.child("precio").getValue().toString();
+                        String url = producteSnapshot.child("foto").getValue().toString();
+                        Log.e("firebase", "dins del for foto = "+url);
+                        int preu = Integer.parseInt(pr);
+                        p = new Producto(n, preu, R.drawable.calamares);
+                        Log.e("firebase", "nom: "+ n);
+                        Log.e("firebase", "nom desde obj"+p.nombre +"tgtttttt"+ p.precio);
                         listaEntrantes.add(p);
-
                     }
                     subcategor.put(categor.get(0), listaEntrantes);
                 }
@@ -129,17 +128,15 @@ public class CartaFirebase extends MainMenu {
 
             }
         });
-        myRef.child("paellas").addValueEventListener(new ValueEventListener() {
+        myRef.child("carta/paellas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
-                        String preu = producteSnapshot.child("precio").getValue().toString();
-                        int prreu = Integer.getInteger(preu);
-                        p = new Producto(n, prreu, R.drawable.calamares);
-                        Log.e("nommmmmmmmmm", n);
-                        Log.e("proooddd", p.nombre +"tgtttttt"+ p.precio);
+                        String pr = producteSnapshot.child("precio").getValue().toString();
+                        int preu = Integer.parseInt(pr);
+                        p = new Producto(n, preu, R.drawable.calamares);
                         listaPaellas.add(p);
                     }
                     subcategor.put(categor.get(1), listaPaellas);
@@ -151,17 +148,15 @@ public class CartaFirebase extends MainMenu {
 
             }
         });
-        myRef.child("fideuas").addValueEventListener(new ValueEventListener() {
+        myRef.child("carta/fideuas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
-                        String preu = producteSnapshot.child("precio").getValue().toString();
-                        int prreu = Integer.getInteger(preu);
-                        p = new Producto(n, prreu, R.drawable.calamares);
-                        Log.e("nommmmmmmmmm", n);
-                        Log.e("proooddd", p.nombre +"tgtttttt"+ p.precio);
+                        String pr = producteSnapshot.child("precio").getValue().toString();
+                        int preu = Integer.parseInt(pr);
+                        p = new Producto(n, preu, R.drawable.calamares);
                         listaFideuas.add(p);
                     }
                     subcategor.put(categor.get(2), listaFideuas);
@@ -173,17 +168,15 @@ public class CartaFirebase extends MainMenu {
 
             }
         });
-        myRef.child("postres").addValueEventListener(new ValueEventListener() {
+        myRef.child("carta/postres").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
-                        String preu = producteSnapshot.child("precio").getValue().toString();
-                        int prreu = Integer.getInteger(preu);
-                        p = new Producto(n, prreu, R.drawable.calamares);
-                        Log.e("nommmmmmmmmm", n);
-                        Log.e("proooddd", p.nombre +"tgtttttt"+ p.precio);
+                        String pr = producteSnapshot.child("precio").getValue().toString();
+                        int preu = Integer.parseInt(pr);
+                        p = new Producto(n, preu, R.drawable.calamares);
                         listaPostres.add(p);
                     }
                     subcategor.put(categor.get(3), listaPostres);
@@ -195,17 +188,16 @@ public class CartaFirebase extends MainMenu {
 
             }
         });
-        myRef.child("vinos").addValueEventListener(new ValueEventListener() {
+        myRef.child("carta/vinos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
-                        String preu = producteSnapshot.child("precio").getValue().toString();
-                        int prreu = Integer.getInteger(preu);
-                        p = new Producto(n, prreu, R.drawable.calamares);
-                        Log.e("nommmmmmmmmm", n);
-                        Log.e("proooddd", p.nombre +"tgtttttt"+ p.precio);
+                        String pr = producteSnapshot.child("precio").getValue().toString();
+                        String url = producteSnapshot.child("foto").getValue().toString();
+                        int preu = Integer.parseInt(pr);
+                        p = new Producto(n, preu, R.drawable.calamares);
                         listaVinos.add(p);
                     }
                     subcategor.put(categor.get(4), listaVinos);

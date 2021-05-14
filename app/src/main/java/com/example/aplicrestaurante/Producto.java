@@ -2,7 +2,7 @@ package com.example.aplicrestaurante;
 
 public class Producto {
     String nombre;
-    int imagen;
+    int foto;
     double precio;
     int unidades;
 
@@ -14,12 +14,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getImagen() {
-        return imagen;
+    public int getFoto() {
+        return foto;
     }
 
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 
     public double getPrecio() {
@@ -38,16 +38,16 @@ public class Producto {
         this.unidades = unidades;
     }
 
-    public Producto(String nombre, double precio, int unidades, int imagen) {
+    public Producto(String nombre, double precio, int unidades, int foto) {
         this.nombre = nombre;
         this.precio = precio;
         this.unidades = unidades;
-        this.imagen = imagen;
+        this.foto = foto;
     }
-    public Producto(String nombre , double precio, int imagen) {
+    public Producto(String nombre , double precio, int foto) {
         this.nombre = nombre;
         this.precio = precio;
-        this.imagen= imagen;
+        this.foto = foto;
     }
     public Producto(String nombre , double precio) {
         this.nombre = nombre;

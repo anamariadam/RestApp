@@ -2,6 +2,7 @@ package com.example.aplicrestaurante;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -46,11 +47,15 @@ public class Carrito extends MainMenu {
                     Map<String, Object> comandaSubida = new HashMap<>();
                     int i;
                     for (i = 0; i < prodComanda.size(); i++) {
-                        comandaSubida.put("producto " + i, prodComanda.get(i).nombre);
-                        comandaSubida.put("precio producto"+i, prodComanda.get(i).precio);
-                        comandaSubida.put("unidades producto " + i, prodComanda.get(i).unidades);
+                        Producto pp = new Producto(prodComanda.get(i).nombre, prodComanda.get(i).precio, prodComanda.get(i).unidades, prodComanda.get(i).foto);
+                        comandaSubida.put("Producto "+i, pp);
+                       // comandaSubida.put("nombre producto" + i, prodComanda.get(i).nombre);
+                       // comandaSubida.put("precio producto"+i, prodComanda.get(i).precio);
+                       // comandaSubida.put("unidades producto " + i, prodComanda.get(i).unidades);
 
                     }
+                    Boolean st = true;
+                    comandaSubida.put("Estado ", st);
                     db.child("comandas").push().setValue(comandaSubida);
                     prodComanda.clear();
                     adaptan = new AdaptadorCarrito(Carrito.this, prodComanda);
@@ -81,10 +86,9 @@ public class Carrito extends MainMenu {
         ArrayList<String> prod = new ArrayList<>();
         ArrayList<Double> preu = new ArrayList<>();
         for (int i = 0; i < num;i++) {
-            prod.add(extras.getString("prod"));
-        }
-        for (int i = 0; i < num;i++) {
-            preu.add(extras.getDouble("preu"));
+            prod.add(extras.getString("prod"+i));
+            preu.add(extras.getDouble("preu"+i));
+            Log.e("obj", "cargar carrito "+prod.get(i));
         }
         for (int i = 0; i < prod.size();i++) {
             Producto p = new Producto(prod.get(i), preu.get(i), 1,4);

@@ -60,9 +60,11 @@ public class NuestraCarta extends MainMenu {
                 if (groupPosition == 0) {
                     p = new Producto(listaEntrantes.get(childPosition).nombre, listaEntrantes.get(childPosition).precio);
                     comanda.add(p);
+                    Log.e("obj", "nommmmm "+ listaEntrantes.get(childPosition).nombre);
                 } else if (groupPosition == 1) {
                     p = new Producto(listaPaellas.get(childPosition).nombre, listaPaellas.get(childPosition).precio);
                     comanda.add(p);
+                    Log.e("obj", "nommmmm "+ listaPaellas.get(childPosition).nombre);
                 } else if (groupPosition == 2) {
                     p = new Producto(listaFideuas.get(childPosition).nombre, listaFideuas.get(childPosition).precio);
                     comanda.add(p);
@@ -94,12 +96,10 @@ public class NuestraCarta extends MainMenu {
 
         intent.putExtra("quant", q);
        for (int i = 0; i < comanda.size();i++) {
-           intent.putExtra("prod", comanda.get(i).getNombre());
+           intent.putExtra("prod"+i, comanda.get(i).getNombre());
+           intent.putExtra("preu"+i, comanda.get(i).getPrecio());
+           Log.e("obj", "on click "+comanda.get(i).getNombre());
        }
-        for (int i = 0; i < comanda.size();i++) {
-            intent.putExtra("preu", comanda.get(i).getPrecio());
-        }
-
         startActivity(intent);
     }
     public void onClickMenu(View view) {
