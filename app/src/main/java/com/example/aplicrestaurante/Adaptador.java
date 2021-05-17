@@ -1,12 +1,15 @@
 package com.example.aplicrestaurante;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -81,7 +84,9 @@ public class Adaptador extends BaseExpandableListAdapter {
         preciio.setText(String.valueOf(item.precio));
 
         ImageView img =(ImageView) convertView.findViewById(R.id.imagenes);
-        img.setImageResource(item.foto);
+        Log.e("foto", "adaptador foto:  "+ item.getFoto());
+        Glide.with(context).load(item.getFoto()).into(img);
+        //img.setImageResource(item.foto);
 
 
 

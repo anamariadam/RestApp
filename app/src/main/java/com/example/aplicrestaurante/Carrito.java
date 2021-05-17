@@ -22,7 +22,7 @@ public class Carrito extends MainMenu {
     private ListView myListView;
     AdaptadorCarrito adaptan;
     EditText conta;
-    public TextView total;
+    public static TextView total;
     DatabaseReference db;
     Button botonSubirDatos;
 
@@ -74,7 +74,7 @@ public class Carrito extends MainMenu {
     public void totalDinero(){
         int tt = 0;
         for (int i = 0;i < prodComanda.size();i++){
-        tt += prodComanda.get(i).getPrecio();
+        tt += prodComanda.get(i).getPrecio()*prodComanda.get(i).getUnidades();
         }
         String t =String.valueOf(tt);
         total.setText(t);
@@ -85,13 +85,15 @@ public class Carrito extends MainMenu {
         int num = extras.getInt("quant");
         ArrayList<String> prod = new ArrayList<>();
         ArrayList<Double> preu = new ArrayList<>();
+        ArrayList<Integer> uni = new ArrayList<>();
         for (int i = 0; i < num;i++) {
             prod.add(extras.getString("prod"+i));
             preu.add(extras.getDouble("preu"+i));
+            uni.add(extras.getInt("unit"+i));
             Log.e("obj", "cargar carrito "+prod.get(i));
         }
         for (int i = 0; i < prod.size();i++) {
-            Producto p = new Producto(prod.get(i), preu.get(i), 1,4);
+            Producto p = new Producto(prod.get(i), preu.get(i), uni.get(i),"");
 
             prodComanda.add(p);
         }

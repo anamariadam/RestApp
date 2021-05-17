@@ -60,6 +60,7 @@ public class AdaptadorCarrito extends BaseAdapter {
 
         TextView tvQuantitat = holder.getTextViewQuantitat();
 
+
         holder.getButtonMes().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +70,7 @@ public class AdaptadorCarrito extends BaseAdapter {
 
                     Carrito.prodComanda.get(position).setUnidades(quantitat);
                     tvQuantitat.setText(String.valueOf(quantitat));
+
 
             }
         });
@@ -91,6 +93,7 @@ public class AdaptadorCarrito extends BaseAdapter {
     static class Holder    {
         Button buttonMes, buttonMenys;
         TextView textViewQuantitat;
+
 
         public Button getButtonMes() {
             return buttonMes;

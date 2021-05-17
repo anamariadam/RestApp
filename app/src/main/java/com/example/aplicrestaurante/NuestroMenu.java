@@ -3,6 +3,7 @@ package com.example.aplicrestaurante;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -114,27 +116,50 @@ public class NuestroMenu extends MainMenu {
         if (entrante1.isChecked() || entrante2.isChecked() || entrante3.isChecked() || entrante4.isChecked()){
             if(principal1.isChecked() || principal2.isChecked() || principal3.isChecked() || principal4.isChecked()){
                 if(postre1.isChecked() || postre2.isChecked() || postre3.isChecked() || postre4.isChecked()){
-                    Producto p = new Producto("Menu Diario", 12);
+                    Producto p = new Producto("Menu Diario", 12,1,"");
                     llistaMenus.add(p);
                     Intent intent = new Intent(this, Carrito.class);
                     int q = llistaMenus.size();
 
                     intent.putExtra("quant", q);
                     for (int i = 0; i < llistaMenus.size();i++) {
-                        intent.putExtra("prod", llistaMenus.get(i).getNombre());
+                        intent.putExtra("prod"+i, llistaMenus.get(i).getNombre());
                     }
                     for (int i = 0; i < llistaMenus.size();i++) {
-                        intent.putExtra("preu", llistaMenus.get(i).getPrecio());
+                        intent.putExtra("preu"+i, llistaMenus.get(i).getPrecio());
                     }
-
+                    for (int j = 0; j < llistaMenus.size();j++){
+                        llistaMenus.remove(j);
+                    }
                     startActivity(intent);
+                }else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "Debes seleccionar 3 platos";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
+            }else{
+                Context context = getApplicationContext();
+                CharSequence text = "Debes seleccionar 3 platos";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
+        }else{
+            Context context = getApplicationContext();
+            CharSequence text = "Debes seleccionar 3 platos";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
 
     }
     public void onClickCarta(View view) {
-        Intent intent = new Intent(this, NuestraCarta.class);
+        Intent intent = new Intent(this, CartaFirebase.class);
         startActivity(intent);
     }
 }

@@ -84,7 +84,7 @@ public class ConfirmarDireccion extends MainMenu {
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(this, NuestraCarta.class);
+        Intent intent = new Intent(this, CartaFirebase.class);
         startActivity(intent);
     }
 }

@@ -42,7 +42,7 @@ public class CartaFirebase extends MainMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuestra_carta);
+        setContentView(R.layout.activity_carta_firebase);
 
         myListView = (ExpandableListView) findViewById(R.id.carta);
         categor = new ArrayList<>();
@@ -112,11 +112,9 @@ public class CartaFirebase extends MainMenu {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
-                        Log.e("firebase", "dins del for foto = "+url);
                         int preu = Integer.parseInt(pr);
-                        p = new Producto(n, preu, R.drawable.calamares);
-                        Log.e("firebase", "nom: "+ n);
-                        Log.e("firebase", "nom desde obj"+p.nombre +"tgtttttt"+ p.precio);
+                        p = new Producto(n, preu,1, url);
+
                         listaEntrantes.add(p);
                     }
                     subcategor.put(categor.get(0), listaEntrantes);
@@ -135,8 +133,9 @@ public class CartaFirebase extends MainMenu {
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
+                        String url = producteSnapshot.child("foto").getValue().toString();
                         int preu = Integer.parseInt(pr);
-                        p = new Producto(n, preu, R.drawable.calamares);
+                        p = new Producto(n, preu,1, url);
                         listaPaellas.add(p);
                     }
                     subcategor.put(categor.get(1), listaPaellas);
@@ -155,8 +154,9 @@ public class CartaFirebase extends MainMenu {
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
+                        String url = producteSnapshot.child("foto").getValue().toString();
                         int preu = Integer.parseInt(pr);
-                        p = new Producto(n, preu, R.drawable.calamares);
+                        p = new Producto(n, preu, 1,url);
                         listaFideuas.add(p);
                     }
                     subcategor.put(categor.get(2), listaFideuas);
@@ -175,8 +175,9 @@ public class CartaFirebase extends MainMenu {
                     for (DataSnapshot producteSnapshot : snapshot.getChildren()) {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
+                        String url = producteSnapshot.child("foto").getValue().toString();
                         int preu = Integer.parseInt(pr);
-                        p = new Producto(n, preu, R.drawable.calamares);
+                        p = new Producto(n, preu,1, url);
                         listaPostres.add(p);
                     }
                     subcategor.put(categor.get(3), listaPostres);
@@ -197,7 +198,7 @@ public class CartaFirebase extends MainMenu {
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
                         int preu = Integer.parseInt(pr);
-                        p = new Producto(n, preu, R.drawable.calamares);
+                        p = new Producto(n, preu,1, url);
                         listaVinos.add(p);
                     }
                     subcategor.put(categor.get(4), listaVinos);
@@ -224,16 +225,17 @@ public class CartaFirebase extends MainMenu {
         int q = comanda.size();
 
         intent.putExtra("quant", q);
-        for (int i = 0; i < comanda.size(); i++) {
-            intent.putExtra("prod", comanda.get(i).getNombre());
+        for (int i = 0; i < comanda.size();i++) {
+            intent.putExtra("prod"+i, comanda.get(i).getNombre());
+            intent.putExtra("preu"+i, comanda.get(i).getPrecio());
+            intent.putExtra("unit"+i, comanda.get(i).getUnidades());
+            Log.e("obj", "on click "+comanda.get(i).getNombre());
         }
-        for (int i = 0; i < comanda.size(); i++) {
-            intent.putExtra("preu", comanda.get(i).getPrecio());
+        for (int j = 0; j < comanda.size();j++){
+            comanda.remove(j);
         }
-
         startActivity(intent);
     }
-
     public void onClickMenu(View view) {
         Intent intent = new Intent(this, NuestroMenu.class);
         startActivity(intent);
