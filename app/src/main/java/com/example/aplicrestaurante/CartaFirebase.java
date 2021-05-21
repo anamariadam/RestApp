@@ -71,19 +71,19 @@ public class CartaFirebase extends MainMenu {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Producto p;
                 if (groupPosition == 0) {
-                    p = new Producto(listaEntrantes.get(childPosition).nombre, listaEntrantes.get(childPosition).precio);
+                    p = new Producto(listaEntrantes.get(childPosition).nombre, listaEntrantes.get(childPosition).precio, 1,"");
                     comanda.add(p);
                 } else if (groupPosition == 1) {
-                    p = new Producto(listaPaellas.get(childPosition).nombre, listaPaellas.get(childPosition).precio);
+                    p = new Producto(listaPaellas.get(childPosition).nombre, listaPaellas.get(childPosition).precio, 1,"");
                     comanda.add(p);
                 } else if (groupPosition == 2) {
-                    p = new Producto(listaFideuas.get(childPosition).nombre, listaFideuas.get(childPosition).precio);
+                    p = new Producto(listaFideuas.get(childPosition).nombre, listaFideuas.get(childPosition).precio, 1,"");
                     comanda.add(p);
                 } else if (groupPosition == 3) {
-                    p = new Producto(listaPostres.get(childPosition).nombre, listaPostres.get(childPosition).precio);
+                    p = new Producto(listaPostres.get(childPosition).nombre, listaPostres.get(childPosition).precio, 1,"");
                     comanda.add(p);
                 } else if (groupPosition == 4) {
-                    p = new Producto(listaVinos.get(childPosition).nombre, listaVinos.get(childPosition).precio);
+                    p = new Producto(listaVinos.get(childPosition).nombre, listaVinos.get(childPosition).precio, 1,"");
                     comanda.add(p);
                 }
                 Context context = getApplicationContext();
@@ -126,6 +126,7 @@ public class CartaFirebase extends MainMenu {
 
             }
         });
+
         myRef.child("carta/paellas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -229,7 +230,7 @@ public class CartaFirebase extends MainMenu {
             intent.putExtra("prod"+i, comanda.get(i).getNombre());
             intent.putExtra("preu"+i, comanda.get(i).getPrecio());
             intent.putExtra("unit"+i, comanda.get(i).getUnidades());
-            Log.e("obj", "on click "+comanda.get(i).getNombre());
+            Log.e("obj", "on click "+comanda.get(i).getNombre()+" unit "+comanda.get(i).getUnidades());
         }
         for (int j = 0; j < comanda.size();j++){
             comanda.remove(j);

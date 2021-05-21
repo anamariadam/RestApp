@@ -1,6 +1,7 @@
 package com.example.aplicrestaurante;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class AdaptadorCarrito extends BaseAdapter {
         prodprec.setText(String.valueOf(item.precio));
 
         TextView tvQuantitat = holder.getTextViewQuantitat();
+        tvQuantitat.setText(String.valueOf(item.unidades));
 
 
         holder.getButtonMes().setOnClickListener(new View.OnClickListener() {
@@ -69,8 +71,8 @@ public class AdaptadorCarrito extends BaseAdapter {
                     quantitat++;
 
                     Carrito.prodComanda.get(position).setUnidades(quantitat);
-                    tvQuantitat.setText(String.valueOf(quantitat));
-
+                    tvQuantitat.setText(String.valueOf(Carrito.prodComanda.get(position).getUnidades()));
+                Log.e("unitat ", "esta en mes: "+Carrito.prodComanda.get(position).getUnidades() );
 
             }
         });
@@ -83,7 +85,8 @@ public class AdaptadorCarrito extends BaseAdapter {
                     if (quantitat > 0) quantitat--;
 
                     Carrito.prodComanda.get(position).setUnidades(quantitat);
-                    tvQuantitat.setText(String.valueOf(quantitat));
+                tvQuantitat.setText(String.valueOf(Carrito.prodComanda.get(position).getUnidades()));
+                Log.e("unitat", "esta en menos: "+Carrito.prodComanda.get(position).getUnidades() );
 
             }
         });
