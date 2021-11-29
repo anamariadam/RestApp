@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Aplicación Restaurante</string>
+    <string name="app_name">RestApp</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
 
@@ -25,9 +25,14 @@
     <string name="inicio">Inicio</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps_activityssss">Map</string>
-    <string name="titolCarrito">Tu Pedido</string>
+    <string name="titolCarrito">TU PEDIDO</string>
     <string name="titolConfirmar">Confirmar dirección</string>
     <string name="finalizar">Finalizar Pedido</string>
-    <string name="totalComanda">Total del pedido:</string>
+    <string name="totalComanda">TOTAL DEL PEDIDO</string>
     <string name="cartafirebase">Carta en firebase</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="emailinvalido">El email no es valido</string>
+    <string name="pass">Debe contener almenos 6 digitos</string>
+    <string name="confirPedido">Confirma tu pedido: </string>
+    <string name="promo">Promociones</string>
 </resources>

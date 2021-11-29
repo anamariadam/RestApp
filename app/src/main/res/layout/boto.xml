@@ -25,6 +25,8 @@
         android:layout_marginBottom="96dp"
         android:text="Entregar aquí"
         android:onClick="onClick"
+        android:backgroundTint="@color/boton"
+        android:fontFamily="@font/caveat_brush"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />

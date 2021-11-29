@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +37,10 @@ public class NuestroMenu extends MainMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuestro_menu);
+
+        getSupportActionBar().setTitle("RestApp");
+        String bb = "#E4F4C536";
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
 
         entrante1 = findViewById(R.id.entrante1);
         entrante2 = findViewById(R.id.entrante2);

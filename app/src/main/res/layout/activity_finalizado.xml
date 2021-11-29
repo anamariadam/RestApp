@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CEFFFFFF"
     tools:context=".Finalizado">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/black"
+        android:background="@drawable/fondo1"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,15 +19,148 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="411dp"
-            android:layout_height="462dp"
-            android:layout_marginTop="96dp"
-            android:fontFamily="serif"
-            android:gravity="center"
-            android:text="Pedido finalizado."
+            android:id="@+id/confirmatupedido"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@drawable/fondorec"
+            android:fontFamily="@font/caveat_brush"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="@string/confirPedido"
             android:textAlignment="center"
-            android:textColor="@color/blueBBchill"
-            android:textSize="30dp" />
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/pedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:text="Tu pedido:"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <ListView
+            android:id="@+id/listComand"
+            android:layout_width="match_parent"
+            android:layout_height="136dp">
+
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/caveat_brush"
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:text="TOTAL :"
+                android:textAlignment="textEnd"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_brush"
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:text="TextView"
+                android:textAlignment="textEnd"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:fontFamily="@font/caveat_brush"
+                android:gravity="start"
+                android:text="€"
+                android:textAlignment="textStart"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/direccion"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:text="Tu dirección:"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="129dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/contenidoDireccion"
+                android:layout_width="200dp"
+                android:layout_height="138dp"
+                android:fontFamily="@font/caveat_brush"
+                android:text="contenido direccion"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onClickEditaDireccion"
+                app:srcCompat="@drawable/editt" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/pago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:text="Tu metodo de pago:"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/efectivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/caveat_brush"
+            android:text="Efectivo"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/inicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:text="Inicia Sesión" />
+
+        <Button
+            android:id="@+id/confirma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:onClick="onClickfin"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:text="Confirma Tu Pedido" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

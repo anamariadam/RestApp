@@ -8,6 +8,11 @@
         android:orderInCategory="100"
         android:title="@string/inicio"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_promo"
+        android:orderInCategory="100"
+        android:title="@string/promo"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_sobreNosotros"
@@ -19,6 +24,12 @@
         android:orderInCategory="100"
         android:title="@string/contacto"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_login"
+        android:orderInCategory="100"
+        android:title="@string/login"
+        app:showAsAction="never" />
+
     
 
 </menu>

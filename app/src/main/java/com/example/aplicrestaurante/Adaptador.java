@@ -81,8 +81,7 @@ public class Adaptador extends BaseExpandableListAdapter {
         subcategoria.setText(item.nombre);
 
         TextView preciio = (TextView) convertView.findViewById(R.id.precios);
-        preciio.setText(String.valueOf(item.precio));
-
+        preciio.setText(String.valueOf(String.format("%.2f",item.precio)));
         ImageView img =(ImageView) convertView.findViewById(R.id.imagenes);
         Log.e("foto", "adaptador foto:  "+ item.getFoto());
         Glide.with(context).load(item.getFoto()).into(img);

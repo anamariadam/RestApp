@@ -1,17 +1,22 @@
 package com.example.aplicrestaurante;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -24,16 +29,32 @@ import java.util.Locale;
 
 public class ConfirmarDireccion extends MainMenu {
     private FusedLocationProviderClient fl;
-
+    EditText pobInp, calleInp, numInp, codeInp, info, tlf;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmar_direccion);
         fl = LocationServices.getFusedLocationProviderClient(this);
+
+        getSupportActionBar().setTitle("RestApp");
+        String bb = "#E4F4C536";
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
+
+        pobInp = (EditText) findViewById(R.id.poblacioninput);
+        calleInp = (EditText) findViewById(R.id.calleinput);
+        numInp = (EditText) findViewById(R.id.numeroinput);
+        codeInp = (EditText) findViewById(R.id.codigopostalinput);
+        info = (EditText) findViewById(R.id.infoadicionalinput);
+        tlf = (EditText) findViewById(R.id.telefonoinput);
+
         cargarDatos();
+        cargarname();
+
 
     }
-    public void cargarDatos () {
+
+    public void cargarDatos() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -61,16 +82,10 @@ public class ConfirmarDireccion extends MainMenu {
                             String numero = addresses.get(0).getFeatureName();
                             String codigoPostal = addresses.get(0).getPostalCode();
 
-                            EditText pobInp = (EditText) findViewById(R.id.poblacioninput);
+
                             pobInp.setText(localidad);
-
-                            EditText calleInp = (EditText) findViewById(R.id.calleinput);
                             calleInp.setText(calle);
-
-                            EditText numInp = (EditText) findViewById(R.id.numeroinput);
                             numInp.setText(numero);
-
-                            EditText codeInp = (EditText) findViewById(R.id.codigopostalinput);
                             codeInp.setText(codigoPostal);
 
                         }
@@ -83,8 +98,22 @@ public class ConfirmarDireccion extends MainMenu {
         });
     }
 
+    public void cargarname() {
+        Bundle extras = getIntent().getExtras();
+        name = extras.getString("nom");
+    }
+
     public void onClick(View view) {
-        Intent intent = new Intent(this, CartaFirebase.class);
-        startActivity(intent);
+        if (name.equals("Finalizado")) {
+            Intent i = new Intent(this, Finalizado.class);
+            String direccion = pobInp.getText().toString()+" "+ codeInp.getText().toString() + "\n" + calleInp.getText().toString() + " " + numInp.getText().toString() + "\n" + info.getText().toString() + "\n" + tlf.getText().toString();
+            i.putExtra("dir", direccion);
+            startActivity(i);
+        } else {
+            Intent intent = new Intent(this, CartaFirebase.class);
+            String direccion = pobInp.getText().toString()+" "+ codeInp.getText().toString() + "\n" + calleInp.getText().toString() + " " + numInp.getText().toString() + "\n" + info.getText().toString() + "\n" + tlf.getText().toString();
+            intent.putExtra("dir", direccion);
+            startActivity(intent);
+        }
     }
 }

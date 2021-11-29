@@ -57,7 +57,7 @@ public class AdaptadorCarrito extends BaseAdapter {
         TextView prod = (TextView) convertView.findViewById(R.id.productoPedido);
         prod.setText(item.nombre);
         TextView prodprec = (TextView) convertView.findViewById(R.id.productoPedidoPrecio);
-        prodprec.setText(String.valueOf(item.precio));
+        prodprec.setText(String.valueOf(String.format("%.2f",item.precio)));
 
         TextView tvQuantitat = holder.getTextViewQuantitat();
         tvQuantitat.setText(String.valueOf(item.unidades));
@@ -73,7 +73,7 @@ public class AdaptadorCarrito extends BaseAdapter {
                     Carrito.prodComanda.get(position).setUnidades(quantitat);
                     tvQuantitat.setText(String.valueOf(Carrito.prodComanda.get(position).getUnidades()));
                 Log.e("unitat ", "esta en mes: "+Carrito.prodComanda.get(position).getUnidades() );
-
+                Carrito.totalDinero();
             }
         });
 
@@ -87,7 +87,7 @@ public class AdaptadorCarrito extends BaseAdapter {
                     Carrito.prodComanda.get(position).setUnidades(quantitat);
                 tvQuantitat.setText(String.valueOf(Carrito.prodComanda.get(position).getUnidades()));
                 Log.e("unitat", "esta en menos: "+Carrito.prodComanda.get(position).getUnidades() );
-
+                Carrito.totalDinero();
             }
         });
 

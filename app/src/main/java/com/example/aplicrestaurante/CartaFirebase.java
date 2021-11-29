@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,10 +31,13 @@ public class CartaFirebase extends MainMenu {
     private Map<String, ArrayList<Producto>> subcategor;
     ArrayList<Producto> comanda = new ArrayList<>();
     ArrayList<Producto> listaEntrantes, listaPaellas, listaFideuas, listaPostres, listaVinos;
+
     FirebaseDatabase database;
     DatabaseReference myRef;
+
     Producto p;
     private int gp, cp;
+    String direccion;
 
     public CartaFirebase() {
 
@@ -43,6 +48,10 @@ public class CartaFirebase extends MainMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta_firebase);
+
+        getSupportActionBar().setTitle("RestApp");
+        String bb = "#E4F4C536";
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
 
         myListView = (ExpandableListView) findViewById(R.id.carta);
         categor = new ArrayList<>();
@@ -64,6 +73,7 @@ public class CartaFirebase extends MainMenu {
         listaVinos = new ArrayList<>();
         cargar();
         adaptar();
+        cargarDireccion();
 
 
         myListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -112,7 +122,7 @@ public class CartaFirebase extends MainMenu {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
-                        int preu = Integer.parseInt(pr);
+                        double preu = Double.parseDouble(pr);
                         p = new Producto(n, preu,1, url);
 
                         listaEntrantes.add(p);
@@ -135,7 +145,7 @@ public class CartaFirebase extends MainMenu {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
-                        int preu = Integer.parseInt(pr);
+                        double preu = Double.parseDouble(pr);
                         p = new Producto(n, preu,1, url);
                         listaPaellas.add(p);
                     }
@@ -156,7 +166,7 @@ public class CartaFirebase extends MainMenu {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
-                        int preu = Integer.parseInt(pr);
+                        double preu = Double.parseDouble(pr);
                         p = new Producto(n, preu, 1,url);
                         listaFideuas.add(p);
                     }
@@ -177,7 +187,7 @@ public class CartaFirebase extends MainMenu {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
-                        int preu = Integer.parseInt(pr);
+                        double preu = Double.parseDouble(pr);
                         p = new Producto(n, preu,1, url);
                         listaPostres.add(p);
                     }
@@ -198,7 +208,7 @@ public class CartaFirebase extends MainMenu {
                         String n = producteSnapshot.child("nombre").getValue().toString();
                         String pr = producteSnapshot.child("precio").getValue().toString();
                         String url = producteSnapshot.child("foto").getValue().toString();
-                        int preu = Integer.parseInt(pr);
+                        double preu = Double.parseDouble(pr);
                         p = new Producto(n, preu,1, url);
                         listaVinos.add(p);
                     }
@@ -218,19 +228,23 @@ public class CartaFirebase extends MainMenu {
         adapta = new Adaptador(categor, subcategor, this);
         myListView.setAdapter(adapta);
     }
+    public void cargarDireccion(){
+
+        Bundle extras = getIntent().getExtras();
+        direccion =extras.getString("dir");
+    }
 
 
 
     public void onClickCarrito(View view) {
         Intent intent = new Intent(this, Carrito.class);
         int q = comanda.size();
-
+        intent.putExtra("dir",direccion);
         intent.putExtra("quant", q);
         for (int i = 0; i < comanda.size();i++) {
             intent.putExtra("prod"+i, comanda.get(i).getNombre());
             intent.putExtra("preu"+i, comanda.get(i).getPrecio());
             intent.putExtra("unit"+i, comanda.get(i).getUnidades());
-            Log.e("obj", "on click "+comanda.get(i).getNombre()+" unit "+comanda.get(i).getUnidades());
         }
         for (int j = 0; j < comanda.size();j++){
             comanda.remove(j);

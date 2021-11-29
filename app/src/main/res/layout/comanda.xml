@@ -21,17 +21,23 @@
             <TextView
                 android:id="@+id/productoPedido"
                 android:layout_width="155dp"
-                android:layout_height="wrap_content"
+                android:layout_height="33dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:fontFamily="@font/caveat_brush"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/productoPedidoPrecio"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="18sp"
+                android:fontFamily="@font/caveat_brush"
                 android:gravity="end"
+                android:textColor="@color/black"
                 android:text="TextView"
                 android:textAlignment="textEnd" />
 
@@ -40,13 +46,18 @@
                 android:layout_width="24dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="18sp"
+                android:fontFamily="@font/caveat_brush"
+                android:textColor="@color/black"
                 android:text="€" />
 
             <Button
                 android:id="@+id/restar"
-                android:layout_width="42dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/boton"
+                android:fontFamily="@font/caveat_brush"
                 android:text="-" />
 
             <EditText
@@ -55,15 +66,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1"
+                android:fontFamily="@font/caveat_brush"
+                android:textColor="@color/black"
                 android:gravity="center_horizontal"
                 android:textAlignment="center" />
 
 
             <Button
                 android:id="@+id/sumar"
-                android:layout_width="42dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/boton"
+                android:fontFamily="@font/caveat_brush"
                 android:layout_marginRight="10dp"
                 android:text="+" />
         </LinearLayout>

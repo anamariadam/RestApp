@@ -36,8 +36,14 @@ public class MainMenu extends AppCompatActivity {
             Intent intent = new Intent(this, Contacto.class);
             startActivity(intent);
         }
-
-
+        if (id == R.id.action_login) {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_promo) {
+            Intent intent = new Intent(this, Promociones.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

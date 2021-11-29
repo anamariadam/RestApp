@@ -1,6 +1,7 @@
 package com.example.aplicrestaurante;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -22,9 +23,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -44,6 +48,7 @@ import java.util.Map;
 public class MainActivity extends MainMenu implements OnMapReadyCallback {
     private GoogleMap mMap;
     private FusedLocationProviderClient flpc;
+    FirebaseAuth a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +56,46 @@ public class MainActivity extends MainMenu implements OnMapReadyCallback {
         setContentView(R.layout.boto);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setTitle("RestApp");
+        a = FirebaseAuth.getInstance();
+        a.getCurrentUser();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
         flpc = LocationServices.getFusedLocationProviderClient(this);
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            super.onRestoreInstanceState(savedInstanceState);
+        }
+
+
+
+
     }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Cerrar Aplicación") .setMessage("Seguro que quieres cerrar la aplicación?")
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(
+                            DialogInterface dialog, int which) {
+                        a.signOut();
+                        Intent intent = new Intent(Intent.ACTION_MAIN); intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton("NO", null).show(); }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
         flpc.getLastLocation()
@@ -100,6 +126,8 @@ public class MainActivity extends MainMenu implements OnMapReadyCallback {
 
     public void onClick(View view) { // Your own broadcast
         Intent intent = new Intent(this, ConfirmarDireccion.class);
+        String cl="Main";
+        intent.putExtra("nom", cl);
         startActivity(intent);
     }
 }

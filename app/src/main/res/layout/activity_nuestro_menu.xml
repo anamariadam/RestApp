@@ -28,26 +28,28 @@
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/purple_700"
+                    android:layout_height="70dp"
+                    android:background="@drawable/fondorec"
+                    android:fontFamily="@font/caveat_brush"
                     android:gravity="center_horizontal"
                     android:padding="15dp"
                     android:text="MENÚ DIARIO"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/purple_700"
+                    android:background="@color/boton"
                     android:gravity="center_horizontal"
                     android:padding="15dp"
                     android:text="ENTRANTES"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/caveat_brush"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
+                    android:textColor="@color/white"/>
 
                 <RadioGroup
                     android:id="@+id/entrantes"
@@ -59,13 +61,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:textSize="20dp"
+                        android:fontFamily="@font/caveat_brush"
                         android:textColor="@color/black" />
 
                     <RadioButton
                         android:id="@+id/entrante2"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
+                        android:textSize="20dp"
                         android:text=""
+                        android:fontFamily="@font/caveat_brush"
                         android:textColor="@color/black" />
 
                     <RadioButton
@@ -73,12 +79,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="33dp"
                         android:text=""
+                        android:textSize="20dp"
+                        android:fontFamily="@font/caveat_brush"
                         android:textColor="@color/black" />
 
                     <RadioButton
                         android:id="@+id/entrante4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/caveat_brush"
                         android:text="" />
 
                 </RadioGroup>
@@ -87,13 +97,14 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/purple_700"
+                    android:background="@color/boton"
                     android:gravity="center_horizontal"
                     android:padding="15dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="PRINCIPALES"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
+                    android:textColor="@color/white" />
 
                 <RadioGroup
                     android:id="@+id/principales"
@@ -104,6 +115,8 @@
                         android:id="@+id/principal1"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:text=""
                         android:textColor="@color/black" />
 
@@ -112,6 +125,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
                         android:text=""
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:textColor="@color/black" />
 
                     <RadioButton
@@ -119,12 +134,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:textColor="@color/black" />
 
                     <RadioButton
                         android:id="@+id/principal4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/caveat_brush"
                         android:text="" />
 
                 </RadioGroup>
@@ -138,18 +157,21 @@
                         android:id="@+id/textView10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/purple_700"
+                        android:background="@color/boton"
                         android:gravity="center_horizontal"
                         android:padding="15dp"
                         android:text="POSTRES"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/caveat_brush"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="16dp" />
+                        android:textColor="@color/white" />
 
                     <RadioButton
                         android:id="@+id/postre1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:text=""
                         android:textColor="@color/black" />
 
@@ -157,6 +179,8 @@
                         android:id="@+id/postre2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:text=""
                         android:textColor="@color/black" />
 
@@ -164,12 +188,16 @@
                         android:id="@+id/postre3"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:text=""
                         android:textColor="@color/black" />
 
                     <RadioButton
                         android:id="@+id/postre4"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/caveat_brush"
+                        android:textSize="20dp"
                         android:layout_height="wrap_content"
                         android:text="" />
 
@@ -179,15 +207,22 @@
                     android:id="@+id/button"
                     android:onClick="OnClickAnadir"
                     android:layout_width="match_parent"
-                    android:layout_height="67dp"
-                    android:background="@color/purple_700"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:backgroundTint="@color/boton"
+                    android:fontFamily="@font/caveat_brush"
                     android:text="@string/añadirMenu" />
 
                 <Button
                     android:id="@+id/button5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
                     android:text="Volver a la carta"
+                    android:backgroundTint="@color/boton"
+                    android:fontFamily="@font/caveat_brush"
                     android:onClick="onClickCarta"/>
 
             </LinearLayout>
