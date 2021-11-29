@@ -22,5 +22,6 @@ VideoView vw;
 
 
         vw.setVideoPath("raw\\video");
+        vw.setVideoPath("raw\\video");
     }
 }
