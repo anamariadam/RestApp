@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/fondo7"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="154dp">
+
+
+        <TextView
+            android:id="@+id/correoelectronico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="100dp"
+            android:textSize="25dp"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:text="Correo Electronico: " />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/correoelectronicoinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/contraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textSize="25dp"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:text="Contraseña: " />
+
+        <EditText
+            android:id="@+id/contraseñainput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword" />
+
+
+
+        <Button
+            android:id="@+id/iniciarsesion"
+            android:layout_marginTop="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:onClick="onClickIniciar"
+            android:text="Iniciar sesión" />
+
+        <Button
+            android:id="@+id/olvide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:onClick="onClickOlvide"
+            android:text="Olvidé mi contraseña" />
+
+        <Button
+            android:id="@+id/registrarse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:onClick="onClickRegistrar"
+            android:text="Registrarse" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

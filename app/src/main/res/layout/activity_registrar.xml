@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registrar">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/fondo7"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="302dp">
+
+        <TextView
+            android:id="@+id/registra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:text="Registrar cuenta "
+            android:gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/correoelectronico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:text="Correo Electronico: " />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/correofinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/contraseñaindice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="25dp"
+            android:fontFamily="@font/caveat_brush"
+            android:textColor="@color/black"
+            android:text="Contraseña: " />
+
+        <EditText
+            android:id="@+id/contraseñafinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/contraseñaindice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:fontFamily="@font/caveat_brush"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:text="Repetir contraseña: " />
+
+        <EditText
+            android:id="@+id/contraseñafinput2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/registrofinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:onClick="onClickRegistrofinal"
+            android:text="Registrarse" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
