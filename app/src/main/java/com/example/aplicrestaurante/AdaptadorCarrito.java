@@ -20,6 +20,7 @@ public class AdaptadorCarrito extends BaseAdapter {
     public AdaptadorCarrito(Context context, ArrayList<Producto> comanda) {
         this.context = context;
         this.comanda = comanda;
+
     }
 
     @Override

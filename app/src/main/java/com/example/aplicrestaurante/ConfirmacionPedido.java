@@ -22,6 +22,7 @@ TextView horallegada;
 
         getSupportActionBar().setTitle("RestApp");
         String bb = "#E4F4C536";
+
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
 
         Date currentTime = Calendar.getInstance().getTime();

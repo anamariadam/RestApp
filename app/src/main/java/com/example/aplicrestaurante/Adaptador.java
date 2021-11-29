@@ -24,6 +24,7 @@ public class Adaptador extends BaseExpandableListAdapter {
         this.categorias = categorias;
         this.subcategoria = subcategoria;
         this.context = context;
+
     }
 
 

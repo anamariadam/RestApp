@@ -37,6 +37,7 @@ public class CartaFirebase extends MainMenu {
 
     Producto p;
     private int gp, cp;
+
     String direccion;
 
     public CartaFirebase() {
