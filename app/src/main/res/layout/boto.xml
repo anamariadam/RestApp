@@ -23,7 +23,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:layout_marginBottom="96dp"
-        android:text="Entregar aquí"
+        android:text="Hacer pedido"
         android:onClick="onClick"
         android:backgroundTint="@color/boton"
         android:fontFamily="@font/caveat_brush"

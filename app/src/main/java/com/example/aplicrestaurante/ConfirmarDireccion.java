@@ -27,10 +27,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+
 public class ConfirmarDireccion extends MainMenu {
     private FusedLocationProviderClient fl;
     EditText pobInp, calleInp, numInp, codeInp, info, tlf;
-    String name;
+    String name, nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +54,10 @@ public class ConfirmarDireccion extends MainMenu {
 
 
     }
-
     public void cargarDatos() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         fl.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -71,25 +65,19 @@ public class ConfirmarDireccion extends MainMenu {
             public void onSuccess(Location location) {
                 // Got last known location. In some rare situations this can be null.
                 if (location != null) {
-
                     Geocoder geocoder = new Geocoder(ConfirmarDireccion.this, Locale.getDefault());
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                         if (addresses != null) {
-
                             String localidad = addresses.get(0).getLocality();
                             String calle = addresses.get(0).getThoroughfare();
                             String numero = addresses.get(0).getFeatureName();
                             String codigoPostal = addresses.get(0).getPostalCode();
-
-
                             pobInp.setText(localidad);
                             calleInp.setText(calle);
                             numInp.setText(numero);
                             codeInp.setText(codigoPostal);
-
                         }
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -101,6 +89,7 @@ public class ConfirmarDireccion extends MainMenu {
     public void cargarname() {
         Bundle extras = getIntent().getExtras();
         name = extras.getString("nom");
+        nombre = extras.getString("nombre");
     }
 
     public void onClick(View view) {
@@ -108,9 +97,10 @@ public class ConfirmarDireccion extends MainMenu {
             Intent i = new Intent(this, Finalizado.class);
             String direccion = pobInp.getText().toString()+" "+ codeInp.getText().toString() + "\n" + calleInp.getText().toString() + " " + numInp.getText().toString() + "\n" + info.getText().toString() + "\n" + tlf.getText().toString();
             i.putExtra("dir", direccion);
+            i.putExtra("nombre", nombre);
             startActivity(i);
         } else {
-            Intent intent = new Intent(this, CartaFirebase.class);
+            Intent intent = new Intent(this, TipoAcceso.class);
             String direccion = pobInp.getText().toString()+" "+ codeInp.getText().toString() + "\n" + calleInp.getText().toString() + " " + numInp.getText().toString() + "\n" + info.getText().toString() + "\n" + tlf.getText().toString();
             intent.putExtra("dir", direccion);
             startActivity(intent);

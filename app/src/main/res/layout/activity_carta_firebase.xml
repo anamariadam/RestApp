@@ -12,7 +12,7 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="288dp"
         tools:layout_editor_absoluteY="227dp"
-        android:background="@drawable/fondo7">
+        android:background="@drawable/carta">
 
         <TextView
             android:id="@+id/textView3"

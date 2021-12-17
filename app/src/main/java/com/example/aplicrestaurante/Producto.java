@@ -6,6 +6,7 @@ public class Producto {
     String nombre;
     String foto;
     double precio;
+    String descripcion;
     int unidades;
 
     @Override
@@ -14,11 +15,6 @@ public class Producto {
         if (o == null || getClass() != o.getClass()) return false;
         Producto producto = (Producto) o;
         return nombre.equals(producto.nombre);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nombre);
     }
 
     public String getNombre() {
@@ -45,6 +41,14 @@ public class Producto {
         this.precio = precio;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public int getUnidades() {
         return unidades;
     }
@@ -68,6 +72,13 @@ public class Producto {
         this.nombre = nombre;
         this.precio = precio;
     }
+    public Producto(String nombre , double precio, String descripcion, int unidades) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.unidades = unidades;
+        this.descripcion = descripcion;
+    }
+
 
 }
 

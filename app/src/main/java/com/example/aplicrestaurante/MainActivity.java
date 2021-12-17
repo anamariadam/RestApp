@@ -77,7 +77,8 @@ public class MainActivity extends MainMenu implements OnMapReadyCallback {
     }
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Cerrar Aplicación") .setMessage("Seguro que quieres cerrar la aplicación?")
+        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Cerrar Aplicación")
+                .setMessage("Seguro que quieres cerrar la aplicación?")
                 .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(
@@ -105,29 +106,21 @@ public class MainActivity extends MainMenu implements OnMapReadyCallback {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
                             // Add a marker in Sydney and move the camera
-
                             LatLng ubica = new LatLng(location.getLatitude(), location.getLongitude());
                             mMap.addMarker(new MarkerOptions().position(ubica).title("Mi ubicación"));
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(ubica));
                             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubica, 18));
-
-                            Log.e("lat", +location.getLatitude() + " long " + location.getLongitude());
-
-
-                            //Era para guardarme las posiciones en teoria al final no me hace falta
-                            Map<String, Object> loc = new HashMap<>();
-                            loc.put("latitud", location.getLatitude());
-                            loc.put("longitud", location.getLongitude());
-
                         }
                     }
                 });
     }
 
-    public void onClick(View view) { // Your own broadcast
+    public void onClick(View view) {
         Intent intent = new Intent(this, ConfirmarDireccion.class);
         String cl="Main";
+        String n=" ";
         intent.putExtra("nom", cl);
+        intent.putExtra("nombre", n);
         startActivity(intent);
     }
 }

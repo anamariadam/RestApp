@@ -8,19 +8,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.VideoView;
 
-public class Promociones extends AppCompatActivity {
+public class Promociones extends MainMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promociones);
 
-
         getSupportActionBar().setTitle("RestApp");
         String bb = "#E4F4C536";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
-
-
 
     }
 }

@@ -31,15 +31,11 @@ public class CartaFirebase extends MainMenu {
     private Map<String, ArrayList<Producto>> subcategor;
     ArrayList<Producto> comanda = new ArrayList<>();
     ArrayList<Producto> listaEntrantes, listaPaellas, listaFideuas, listaPostres, listaVinos;
-
     FirebaseDatabase database;
     DatabaseReference myRef;
-
     Producto p;
     private int gp, cp;
-
-    String direccion;
-
+    String direccion, nombre;
     public CartaFirebase() {
 
     }
@@ -80,7 +76,7 @@ public class CartaFirebase extends MainMenu {
         myListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Producto p;
+                Producto p = null;
                 if (groupPosition == 0) {
                     p = new Producto(listaEntrantes.get(childPosition).nombre, listaEntrantes.get(childPosition).precio, 1,"");
                     comanda.add(p);
@@ -103,7 +99,6 @@ public class CartaFirebase extends MainMenu {
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-
                 return false;
             }
 
@@ -233,6 +228,27 @@ public class CartaFirebase extends MainMenu {
 
         Bundle extras = getIntent().getExtras();
         direccion =extras.getString("dir");
+        nombre = extras.getString("nombre");
+
+        int num = extras.getInt("quant");
+        ArrayList<String> prod = new ArrayList<>();
+        ArrayList<String> descr = new ArrayList<>();
+        ArrayList<Double> preu = new ArrayList<>();
+        ArrayList<Integer> uni = new ArrayList<>();
+        direccion =extras.getString("dir");
+        nombre =extras.getString("nombre");
+        for (int i = 0; i < num;i++) {
+            prod.add(extras.getString("prod"+i));
+            preu.add(extras.getDouble("preu"+i));
+            uni.add(extras.getInt("unit"+i));
+            descr.add(extras.getString("descripcion"+i));
+            Log.e("obj", "cargar finalizado "+prod.get(i));
+        }
+        for (int i = 0; i < prod.size();i++) {
+            Producto p = new Producto(prod.get(i), preu.get(i), descr.get(i),uni.get(i));
+
+            comanda.add(p);
+        }
     }
 
 
@@ -241,10 +257,13 @@ public class CartaFirebase extends MainMenu {
         Intent intent = new Intent(this, Carrito.class);
         int q = comanda.size();
         intent.putExtra("dir",direccion);
+        intent.putExtra("nombre", nombre);
         intent.putExtra("quant", q);
+
         for (int i = 0; i < comanda.size();i++) {
             intent.putExtra("prod"+i, comanda.get(i).getNombre());
             intent.putExtra("preu"+i, comanda.get(i).getPrecio());
+            intent.putExtra("descripcion"+i,comanda.get(i).getDescripcion());
             intent.putExtra("unit"+i, comanda.get(i).getUnidades());
         }
         for (int j = 0; j < comanda.size();j++){
@@ -254,6 +273,8 @@ public class CartaFirebase extends MainMenu {
     }
     public void onClickMenu(View view) {
         Intent intent = new Intent(this, NuestroMenu.class);
+        intent.putExtra("dir",direccion);
+        intent.putExtra("nombre", nombre);
         startActivity(intent);
     }
 

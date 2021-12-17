@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class AdaptadorCarrito extends BaseAdapter {
@@ -49,22 +47,25 @@ public class AdaptadorCarrito extends BaseAdapter {
             holder = new Holder();
 
             // Els botons i la quantitat
-            holder.setButtonMes ((Button) convertView.findViewById(R.id.sumar));
-            holder.setButtonMenys ((Button) convertView.findViewById(R.id.restar));
-            holder.setTextViewQuantitat( convertView.findViewById(R.id.contador));
+            holder.setBotonmas((Button) convertView.findViewById(R.id.sumar));
+            holder.setBotonmenos((Button) convertView.findViewById(R.id.restar));
+            holder.setCantidad( convertView.findViewById(R.id.contador));
 
             convertView.setTag(holder);
 
         TextView prod = (TextView) convertView.findViewById(R.id.productoPedido);
         prod.setText(item.nombre);
+        TextView d = convertView.findViewById(R.id.descripcion);
+        d.setText(item.descripcion);
         TextView prodprec = (TextView) convertView.findViewById(R.id.productoPedidoPrecio);
         prodprec.setText(String.valueOf(String.format("%.2f",item.precio)));
 
-        TextView tvQuantitat = holder.getTextViewQuantitat();
+        TextView tvQuantitat = holder.getCantidad();
         tvQuantitat.setText(String.valueOf(item.unidades));
 
 
-        holder.getButtonMes().setOnClickListener(new View.OnClickListener() {
+
+        holder.getBotonmas().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -77,8 +78,7 @@ public class AdaptadorCarrito extends BaseAdapter {
                 Carrito.totalDinero();
             }
         });
-
-        holder.getButtonMenys().setOnClickListener(new View.OnClickListener() {
+        holder.getBotonmenos().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -95,27 +95,27 @@ public class AdaptadorCarrito extends BaseAdapter {
         return convertView;
     }
     static class Holder    {
-        Button buttonMes, buttonMenys;
-        TextView textViewQuantitat;
+        public Button botonmas, botonmenos;
+        TextView cantidad;
 
 
-        public Button getButtonMes() {
-            return buttonMes;
+        public Button getBotonmas() {
+            return botonmas;
         }
-        public void setButtonMes(Button buttonMes) {
-            this.buttonMes = buttonMes;
+        public void setBotonmas(Button botonmas) {
+            this.botonmas = botonmas;
         }
-        public Button getButtonMenys() {
-            return buttonMenys;
+        public Button getBotonmenos() {
+            return botonmenos;
         }
-        public void setButtonMenys(Button buttonMenys) {
-            this.buttonMenys = buttonMenys;
+        public void setBotonmenos(Button botonmenos) {
+            this.botonmenos = botonmenos;
         }
-        public TextView getTextViewQuantitat() {
-            return textViewQuantitat;
+        public TextView getCantidad() {
+            return cantidad;
         }
-        public void setTextViewQuantitat(TextView textViewQuantitat) {
-            this.textViewQuantitat = textViewQuantitat;
+        public void setCantidad(TextView cantidad) {
+            this.cantidad = cantidad;
         }
 
     }

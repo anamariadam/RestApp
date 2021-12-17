@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AplicRestaurante">
-        <activity android:name=".Promociones"></activity>
+        <activity android:name=".Invitado"></activity>
+        <activity android:name=".TipoAcceso" />
+        <activity android:name=".Promociones" />
         <activity android:name=".ConfirmacionPedido" />
         <activity android:name=".RecuperarContrasenya" />
         <activity android:name=".Registrar" />

@@ -38,6 +38,7 @@ public class MainMenu extends AppCompatActivity {
         }
         if (id == R.id.action_login) {
             Intent intent = new Intent(this, Login.class);
+            intent.putExtra("dir", " ");
             startActivity(intent);
         }
         if (id == R.id.action_promo) {

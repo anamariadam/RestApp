@@ -25,20 +25,22 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends MainMenu {
     private FirebaseAuth mAuth;
+    FirebaseUser usr;
     AwesomeValidation awesomeValidation;
     Button inicio, registro, recuperar;
     EditText correo,contraseña;
+    String direccion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         getSupportActionBar().setTitle("RestApp");
         String bb = "#E4F4C536";
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
 
-        mAuth = FirebaseAuth.getInstance();
+        cargarDireccion();
 
+        mAuth = FirebaseAuth.getInstance();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this,R.id.correofinput, Patterns.EMAIL_ADDRESS,R.string.emailinvalido);
         awesomeValidation.addValidation(this, R.id.contraseñafinput,".{6,}",R.string.pass);
@@ -46,37 +48,38 @@ public class Login extends MainMenu {
         inicio=findViewById(R.id.iniciarsesion);
         registro = findViewById(R.id.registrarse);
         recuperar = findViewById(R.id.olvide);
-
         correo = findViewById(R.id.correoelectronicoinput);
         contraseña = findViewById(R.id.contraseñainput);
-
-
     }
 
 
     public void onClickIniciar(View view) {
+        if (correo.getText().length() != 0 && contraseña.getText().length() != 0) {
+            if (awesomeValidation.validate()) {
+                String mail = correo.getText().toString();
+                String pass = contraseña.getText().toString();
 
-        if(awesomeValidation.validate()){
-            String mail = correo.getText().toString();
-            String pass = contraseña.getText().toString();
-
-            mAuth.signInWithEmailAndPassword(mail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(Login.this,"Login correcto.",Toast.LENGTH_SHORT).show();
-                        finish();
-                    }else{
-                        String error = ((FirebaseAuthException) task.getException()).getErrorCode();
-                        dameToastdeerror(error);
+                mAuth.signInWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login.this, "Login correcto.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Login.this, CartaFirebase.class);
+                            intent.putExtra("dir", direccion);
+                            intent.putExtra("nombre", mAuth.getCurrentUser().getEmail().toString());
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            String error = ((FirebaseAuthException) task.getException()).getErrorCode();
+                            dameToastdeerror(error);
+                        }
                     }
-                }
-            });
+                });
 
-        }else{
-            Toast.makeText(this,"Completa todos los datos..", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Completa todos los datos..", Toast.LENGTH_SHORT).show();
+            }
         }
-
     }
 
 
@@ -88,6 +91,12 @@ public class Login extends MainMenu {
     public void onClickRegistrar(View view) {
         Intent intent = new Intent(this, Registrar.class);
         startActivity(intent);
+    }
+
+    public void cargarDireccion(){
+
+        Bundle extras = getIntent().getExtras();
+        direccion =extras.getString("dir");
     }
 
     private void dameToastdeerror(String error) {

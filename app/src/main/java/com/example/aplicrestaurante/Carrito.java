@@ -26,8 +26,8 @@ public class Carrito extends MainMenu {
     EditText conta;
     public static TextView total;
     DatabaseReference db;
-    Button botonSubirDatos;
-    String direccion;
+    Button boton;
+    String direccion,nombre;
 
 
     @Override
@@ -43,7 +43,7 @@ public class Carrito extends MainMenu {
         conta = findViewById(R.id.contador);
 
         total = findViewById(R.id.total);
-        botonSubirDatos = findViewById(R.id.comandaUpdate);
+        boton = findViewById(R.id.comandaUpdate);
         db = FirebaseDatabase.getInstance().getReference();
 
         cargarCarrito();
@@ -55,25 +55,24 @@ public class Carrito extends MainMenu {
 
             }
         });
-        botonSubirDatos.setOnClickListener(new View.OnClickListener() {
+        boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Carrito.this, Finalizado.class);
                 int q = prodComanda.size();
-
+                intent.putExtra("nombre", nombre);
                 intent.putExtra("dir",direccion);
                 intent.putExtra("quant", q);
                 for (int i = 0; i < prodComanda.size();i++) {
                     intent.putExtra("prod"+i, prodComanda.get(i).getNombre());
                     intent.putExtra("preu"+i, prodComanda.get(i).getPrecio());
                     intent.putExtra("unit"+i, prodComanda.get(i).getUnidades());
+                    intent.putExtra("descripcion"+i,prodComanda.get(i).getDescripcion());
                 }
                 /*for (int j = 0; j < prodComanda.size();j++){
                     prodComanda.remove(j);
                 }*/
-
                 startActivity(intent);
-
                 }
 
         });
@@ -96,6 +95,7 @@ public class Carrito extends MainMenu {
         Bundle extras = getIntent().getExtras();
         int num = extras.getInt("quant");
         ArrayList<String> prod = new ArrayList<>();
+        ArrayList<String> descr = new ArrayList<>();
         ArrayList<Double> preu = new ArrayList<>();
         ArrayList<Integer> uni = new ArrayList<>();
         for (int i = 0; i < num;i++) {
@@ -103,13 +103,15 @@ public class Carrito extends MainMenu {
             prod.add(extras.getString("prod"+i));
             preu.add(extras.getDouble("preu"+i));
             uni.add(extras.getInt("unit"+i));
+            descr.add(extras.getString("descripcion"+i));
             Log.e("obj", "cargar carrito "+prod.get(i));
         }
         direccion =extras.getString("dir");
+        nombre =extras.getString("nombre");
         for (int i = 0; i < prod.size();i++) {
-            Producto p = new Producto(prod.get(i), preu.get(i), uni.get(i),"");
-
+            Producto p = new Producto(prod.get(i), preu.get(i),descr.get(i), uni.get(i));
             prodComanda.add(p);
+
         }
 
         adaptan = new AdaptadorCarrito(this, prodComanda);

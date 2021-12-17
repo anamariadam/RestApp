@@ -19,10 +19,8 @@ TextView horallegada;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmacion_pedido);
-
         getSupportActionBar().setTitle("RestApp");
         String bb = "#E4F4C536";
-
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(bb)));
 
         Date currentTime = Calendar.getInstance().getTime();
@@ -43,9 +41,7 @@ TextView horallegada;
         }else{
             hfin = String.valueOf(h)+":"+String.valueOf(mfinal);
         }
-
         horallegada = findViewById(R.id.horafin);
-
         horallegada.setText(hfin);
 
     }

@@ -32,6 +32,8 @@ public class NuestroMenu extends MainMenu {
     private ArrayList<String> llistaProductes;
     private  String  producte ;
     public ArrayList<Producto> llistaMenus;
+    RadioGroup rg;
+    String primero,segundo,postre,descripcion, nombre,direccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +58,14 @@ public class NuestroMenu extends MainMenu {
         postre2 = findViewById(R.id.postre2);
         postre3 = findViewById(R.id.postre3);
         postre4 = findViewById(R.id.postre4);
+        rg = findViewById(R.id.entrantes);
 
         database =  FirebaseDatabase.getInstance();
         myRef = database.getReference("menu");
         llistaProductes=new ArrayList<>();
         llistaMenus=new ArrayList<>();
 
+        cargarDatos();
 
         getLlistaProductes(new MyCallback() {
             @Override
@@ -118,26 +122,56 @@ public class NuestroMenu extends MainMenu {
         });
     }
 
+    public void cargarDatos(){
+        Bundle extras = getIntent().getExtras();
+        direccion =extras.getString("dir");
+        nombre = extras.getString("nombre");
+    }
     public void OnClickAnadir(View view){
         if (entrante1.isChecked() || entrante2.isChecked() || entrante3.isChecked() || entrante4.isChecked()){
             if(principal1.isChecked() || principal2.isChecked() || principal3.isChecked() || principal4.isChecked()){
                 if(postre1.isChecked() || postre2.isChecked() || postre3.isChecked() || postre4.isChecked()){
-                    Producto p = new Producto("Menu Diario", 12,1,"");
+                    if(entrante1.isChecked()==true){
+                       primero= entrante1.getText().toString();
+                    }
+                    if(entrante2.isChecked()==true){
+                        primero= entrante2.getText().toString();
+                    }
+                    if(entrante3.isChecked()==true){
+                        primero= entrante3.getText().toString();
+                    }
+                    if(entrante4.isChecked()==true){
+                        primero= entrante4.getText().toString();
+                    }
+                    if(principal1.isChecked()==true){
+                        segundo= principal1.getText().toString();
+                    }
+                    if(principal2.isChecked()==true){
+                        segundo= principal2.getText().toString();
+                    }
+                    if(principal3.isChecked()==true){
+                        segundo= principal3.getText().toString();
+                    }
+                    if(principal4.isChecked()==true){
+                        segundo= principal4.getText().toString();
+                    }
+                    if(postre1.isChecked()==true){
+                        postre= postre1.getText().toString();
+                    }
+                    if(postre2.isChecked()==true){
+                        postre= postre2.getText().toString();
+                    }
+                    if(postre3.isChecked()==true){
+                        postre= postre3.getText().toString();
+                    }
+                    if(postre4.isChecked()==true){
+                        postre= postre4.getText().toString();
+                    }
+                    descripcion = primero+"\n"+segundo+"\n"+postre;
+                    Toast toat = Toast.makeText(this,"Menu añadido", Toast.LENGTH_SHORT);
+                    toat.show();
+                    Producto p = new Producto("Menu Diario", 12,descripcion,1);
                     llistaMenus.add(p);
-                    Intent intent = new Intent(this, Carrito.class);
-                    int q = llistaMenus.size();
-
-                    intent.putExtra("quant", q);
-                    for (int i = 0; i < llistaMenus.size();i++) {
-                        intent.putExtra("prod"+i, llistaMenus.get(i).getNombre());
-                    }
-                    for (int i = 0; i < llistaMenus.size();i++) {
-                        intent.putExtra("preu"+i, llistaMenus.get(i).getPrecio());
-                    }
-                    for (int j = 0; j < llistaMenus.size();j++){
-                        llistaMenus.remove(j);
-                    }
-                    startActivity(intent);
                 }else{
                     Context context = getApplicationContext();
                     CharSequence text = "Debes seleccionar 3 platos";
@@ -166,6 +200,26 @@ public class NuestroMenu extends MainMenu {
     }
     public void onClickCarta(View view) {
         Intent intent = new Intent(this, CartaFirebase.class);
+        int q = llistaMenus.size();
+
+        intent.putExtra("quant", q);
+        intent.putExtra("dir",direccion);
+        intent.putExtra("nombre", nombre);
+        for (int i = 0; i < llistaMenus.size();i++) {
+            intent.putExtra("prod"+i, llistaMenus.get(i).getNombre());
+        }
+        for (int i = 0; i < llistaMenus.size();i++) {
+            intent.putExtra("preu"+i, llistaMenus.get(i).getPrecio());
+        }
+        for (int i = 0; i < llistaMenus.size();i++) {
+            intent.putExtra("unit"+i, llistaMenus.get(i).getUnidades());
+        }
+        for (int i = 0; i < llistaMenus.size();i++) {
+            intent.putExtra("descripcion"+i, llistaMenus.get(i).getDescripcion());
+        }
+        for (int j = 0; j < llistaMenus.size();j++){
+            llistaMenus.remove(j);
+        }
         startActivity(intent);
     }
 }
