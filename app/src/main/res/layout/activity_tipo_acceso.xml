@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TipoAcceso">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/fondo7"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="139dp">
+
+
+        <Button
+            android:id="@+id/registrado"
+            android:layout_marginTop="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:onClick="onClickSesion"
+            android:text="Iniciar sesión" />
+
+        <Button
+            android:id="@+id/invitado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:backgroundTint="@color/boton"
+            android:fontFamily="@font/caveat_brush"
+            android:onClick="onClickInvitado"
+            android:text="Entrar como invitado" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
